@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from os.path import abspath, dirname, join
 from setuptools import setup
 
 version = "0.1"
@@ -22,9 +23,8 @@ setup(
     package_dir={"django_twilio_sms": "src"},
     packages=["django_twilio_sms"],
     include_package_data=True,
-    classifiers=(
+    classifiers=[
         "Development Status :: 4 - Beta",
-        "Environment :: Console",
         "Environment :: Web Environment",
         "Framework :: Django",
         "Intended Audience :: Developers",
@@ -36,5 +36,9 @@ setup(
         "Programming Language :: Python :: 3.2",
         "Programming Language :: Python :: 3.3",
         "Topic :: Software Development :: Libraries :: Python Modules"
-    )
+    ],
+
+    install_requires=filter(None, open(
+        abspath(join(dirname(__file__), "requirements.txt"))
+    ).read().splitlines())
 )
